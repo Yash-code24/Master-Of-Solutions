@@ -192,9 +192,14 @@
       "branch": "Computer",
       "answer": "Practicals for Data Structure Using C:",
       "practicals": [
-        { name: "Practical 1: ", pdf: "pdfs/DS_Practical1.pdf" },
-        { name: "Practical 2: ", pdf: "pdfs/DS_Practical2.pdf" },
-        { name: "Practical 3: ", pdf: "pdfs/DS_Practical3.pdf" }
+        { name: "Practical 1: Write a C program to perform following Operations on Array: Create, Insert, Delete, Display.", pdf: "https://drive.google.com/file/d/1oxmtQO0GK05uTTUwQSwA0vHk-J4MGpgD/view?usp=drivesdk" },
+        { name: "Practical 2: Write a C program to search a particular data from the given Array of numbers using: Linear Search Method.", pdf: "https://drive.google.com/file/d/1z67JYf3R0ZTUvSQzvYwQz9KWP4sIWzFb/view?usp=drivesdk" },
+        { name: "Practical 3: Write a C program to Search a particular data from the given Array of Strings using Linear Search Method.", pdf: "https://drive.google.com/file/d/1X2bue8iGJcCVkJf8w0pq7Ox69i_lhj9l/view?usp=drivesdk" },
+        { name: "Practical 4: Write a C program to Search a particular data from the given Array of numbers using Binary Search Method.", pdf: "https://drive.google.com/file/d/1GqKOFEs3i-W9FObgMDWr1uemxKhUriHl/view?usp=drivesdk" },
+        { name: "Practical 5: Write a C program to Search a particular data from the given Array of Strings using Binary Search Method.", pdf: "https://drive.google.com/file/d/1xBsRr8jaeTS0O4KnMBatOZM3mP-KdxVc/view?usp=drivesdk" },
+        { name: "Practical 6: Write a C program to Sort an Array of numbers using Bubble Sort Method.", pdf: "https://drive.google.com/file/d/1qANjM4oNQbrHUDj7ISo5W3JBpdvEekn5/view?usp=drivesdk" },
+        { name: "Practical 7: Write a C program to Sort an Array of Strings using Bubble Sort Method.", pdf: "https://drive.google.com/file/d/1mFGI8p9ac0ZXofPVpbY2TDbwiTZgxzCI/view?usp=drivesdk" },
+        { name: "Practical 8: Write a C program to Sort an Array of numbers using Selection Sort Method.", pdf: "https://drive.google.com/file/d/1k5yryzpvAWQwfwwDLF7_0BaO0xHJyKBt/view?usp=drivesdk" },
       ]
     },
     "313302": {
@@ -318,44 +323,4 @@
     }
 
     if (matches.length) {
-      let html = `<div style="margin-bottom:8px;color:#0b5ed7;font-weight:600">${matches.length} result(s) found</div>`;
-      matches.forEach(m => {
-        html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
-                   ${renderSubject(m)}
-                 </div>`;
-      });
-      resultEl.innerHTML = html;
-    } else {
-      resultEl.innerHTML = '<div class="noresult">No solution found for the given code/name.</div>';
-    }
-  }
-
-  /* Browse by branch */
-  function browseBranch(branchName) {
-    const list = [];
-    for (const k in materials) {
-      if (materials[k].branch && materials[k].branch.toLowerCase().includes(branchName.toLowerCase())) {
-        list.push(materials[k]);
-      }
-    }
-    const resultEl = document.getElementById('result');
-    if (!list.length) {
-      resultEl.innerHTML = `<div class="noresult">No materials found for ${escapeHtml(branchName)}.</div>`;
-      return;
-    }
-    let html = `<div style="color:#0b5ed7;font-weight:600;margin-bottom:8px">${list.length} item(s) in ${escapeHtml(branchName)}</div>`;
-    list.forEach(m => {
-      html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
-                ${renderSubject(m)}
-               </div>`;
-    });
-    resultEl.innerHTML = html;
-  }
-
-  function escapeHtml(str){
-    if(!str) return '';
-    return String(str).replace(/[&<>"']/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
-  }
-</script>
-
-<script type="text/
+      let html = 
