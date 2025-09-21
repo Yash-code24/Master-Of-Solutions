@@ -323,4 +323,56 @@
     }
 
     if (matches.length) {
-      let html = 
+      let html = `<div style="margin-bottom:8px;color:#0b5ed7;font-weight:600">${matches.length} result(s) found</div>`;
+      matches.forEach(m => {
+        html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
+                   ${renderSubject(m)}
+                 </div>`;
+      });
+      resultEl.innerHTML = html;
+    } else {
+      resultEl.innerHTML = '<div class="noresult">No solution found for the given code/name.</div>';
+    }
+  }
+
+  /* Browse by branch */
+  function browseBranch(branchName) {
+    const list = [];
+    for (const k in materials) {
+      if (materials[k].branch && materials[k].branch.toLowerCase().includes(branchName.toLowerCase())) {
+        list.push(materials[k]);
+      }
+    }
+    const resultEl = document.getElementById('result');
+    if (!list.length) {
+      resultEl.innerHTML = `<div class="noresult">No materials found for ${escapeHtml(branchName)}.</div>`;
+      return;
+    }
+    let html = `<div style="color:#0b5ed7;font-weight:600;margin-bottom:8px">${list.length} item(s) in ${escapeHtml(branchName)}</div>`;
+    list.forEach(m => {
+      html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
+                ${renderSubject(m)}
+               </div>`;
+    });
+    resultEl.innerHTML = html;
+  }
+
+  function escapeHtml(str){
+    if(!str) return '';
+    return String(str).replace(/[&<>"']/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+</script>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : '020031b80a5398e2008e78644d6ea8e9',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/020031b80a5398e2008e78644d6ea8e9/invoke.js"></script>
+
+</body>
+</html>
