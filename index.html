@@ -146,6 +146,24 @@
 </script>
 <script type="text/javascript" src="//www.highperformanceformat.com/9ba807a737fde6b12f8748e9167beab9/invoke.js"></script>
 
+<script>
+  // ✅ Popunder control script
+  (function() {
+    // Check if ad already shown in this session
+    if (!sessionStorage.getItem("popShown")) {
+      // Run popunder only once per session
+      sessionStorage.setItem("popShown", "true");
+      
+      // Delay popunder for smoother user experience
+      setTimeout(() => {
+        var pop = document.createElement("script");
+        pop.type = "text/javascript";
+        pop.src = "//pl27687807.revenuecpmgate.com/b6/07/86/b607861ca6f2feb717ef8cd55377694f.js";
+        document.body.appendChild(pop);
+      }, 4000); // 4 seconds delay after page load
+    }
+  })();
+</script>
 
 <footer id="contact">Copyright © <span id="year"></span> Master Of Solutions </footer>
 
