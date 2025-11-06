@@ -120,8 +120,14 @@
           <p>All semester study material</p>
         </div>
       </div>
-          <!--<h4>Microprojects</h4>
-          <p>All semester microproject</p>-->
+      <div class="card" onclick="browseBranch('PYQ')">
+        <div>
+          <h4>Previous Year Question Paper</h4>
+          <!--<p>All semester study material</p>-->
+        </div>
+      </div>
+
+
     </div>
   </div>
 
@@ -284,7 +290,28 @@
       ]
     },
     // Add other subjects similarly...
+    "313001": {
+      "title": "313301 — Data Structure Using C (DSU)",
+      "branch": "PYQ",
+      "answer": "PYQ'S for DSU :",
+      "practicals": [
+        { name: "2024 Winter Question Paper ", pdf: "https://drive.google.com/file/d/1EhDgfYo4ebHjVXb-f_8UUWb1W9Xbtk3d/view?usp=drivesdk" },
+        { name: "2025 Summer Question Paper ", pdf: "https://drive.google.com/file/d/14mpfsD9iZXfbagnBNHa14dma9aM-GVCi/view?usp=drivesdk" },
+
+      ]
+    },
+    "313304": {
+      "title": "313304 — Object Oriented Programming Using C++ (OOP)",
+      "branch": "PYQ",
+      "answer": "PYQ'S for OOP :",
+      "practicals": [
+        { name: "2024 Winter Question Paper ", pdf: "https://drive.google.com/file/d/1KU-MfIhnT7GM-BQUTiPmw8ml9W61ikJZ/view?usp=drivesdk" },
+        { name: "2025 Summer Question Paper ", pdf: "https://drive.google.com/file/d/1nAl407CLwik2GmaCfXFyRaOfaMKk6Bsg/view?usp=drivesdk" },
+
+      ]
+    },
   };
+
 
   function escapeHtml(str){
     if(!str) return '';
