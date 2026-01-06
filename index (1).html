@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Master Of Solutions</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter, system-ui, Arial, sans-serif;line-height:1.4;color:#1c1f24;background:#f6f8fa}
+  a{color:inherit;text-decoration:none}
+
+  header{background:#0b5ed7;color:white;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:700;font-size:1.15rem}
+  nav ul{display:flex;gap:14px;list-style:none}
+  nav a{padding:6px 10px;border-radius:6px;opacity:.95}
+  nav a:hover{background:rgba(255,255,255,.08)}
+
+  .hero{max-width:1100px;margin:26px auto;padding:22px;text-align:center}
+  .hero .title{font-size:1.6rem;margin-bottom:8px;color:#072146;font-weight:700}
+  .hero .subtitle{color:#425261;margin-bottom:18px}
+
+  .searchBox{display:flex;justify-content:center;margin:0 auto;gap:8px;max-width:760px}
+  .searchBox input{
+    width:100%;padding:14px 16px;border-radius:10px;border:1px solid #dbe7ff;background:white;font-size:1rem;
+    box-shadow:0 6px 18px rgba(11,94,215,0.06)
+  }
+  .searchBox button{
+    background:#0b5ed7;color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;
+  }
+  .searchBox button:active{transform:translateY(1px)}
+
+  .container{max-width:1100px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 320px;gap:20px}
+  .main{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+  .sidebar{display:flex;flex-direction:column;gap:12px}
+
+  .branches{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .card{padding:12px;border-radius:10px;border:1px solid #eef4ff;background:linear-gradient(180deg,#fff,#fbfdff);cursor:pointer;display:flex;align-items:center;gap:12px}
+  .card h4{margin:0;font-size:0.98rem;color:#072146}
+  .card p{margin:0;color:#5b6b79;font-size:0.85rem}
+
+  #result{margin-top:14px;padding:12px;border-radius:8px;border:1px solid #e6eefc;background:#fcfeff;min-height:120px}
+  .noresult{color:#9aa6b2}
+
+  .updates{background:white;border-radius:12px;padding:12px;border:1px solid #eef4ff;box-shadow:0 6px 20px rgba(16,24,40,0.03)}
+  .update-item{padding:8px 0;border-bottom:1px dashed #eef3fb;font-size:.95rem}
+  .update-item:last-child{border-bottom:0}
+  .socials{display:flex;gap:8px;margin-top:8px}
+
+  footer{max-width:1100px;margin:26px auto;text-align:center;color:#6b7280;padding:8px 16px;font-size:0.9rem}
+
+  @media (max-width:920px){ .container{grid-template-columns:1fr; padding:0 12px} .branches{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .branches{grid-template-columns:1fr} header{padding:12px} .hero .title{font-size:1.25rem} }
+
+  /* Practical Cards */
+  .practical-card{
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #e3eafc;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: left;
+  }
+  .practical-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .practical-card a{
+    color: #0b5ed7;
+    font-weight: 500;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : '020031b80a5398e2008e78644d6ea8e9',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/020031b80a5398e2008e78644d6ea8e9/invoke.js"></script>
+
+<header>
+  <div class="brand">Study Materials — MSBTE</div>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#branches">Branches</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="title">All MSBTE Study Material — Manuals, Model Answers & More</div>
+  <div class="subtitle">Type subject code (eg. <code>313304</code>) or subject name to find solutions quickly.</div>
+
+  <div class="searchBox" role="search">
+    <input id="searchBox" type="search" placeholder="Enter subject code or subject name (eg. 313301 or DSU)" onkeydown="if(event.key==='Enter') search()">
+    <button onclick="search()">Search</button>
+  </div>
+
+  <div id="result" class="main" aria-live="polite">Search for a subject to see result here.</div>
+</section>
+
+<div class="container">
+  <div class="main">
+    <h3 id="branches">Branches</h3>
+    <div class="branches">
+      <div class="card" onclick="browseBranch('Computer')">
+        <div>
+          <h4>Computer</h4>
+          <p>All semester study material</p>
+        </div>
+      </div>
+      <div class="card" onclick="browseBranch('PYQ')">
+        <div>
+          <h4>Previous Year Question Paper</h4>
+          <!--<p>All semester study material</p>-->
+        </div>
+      </div>
+      <div class="card" onclick="browseBranch('Notes')">
+        <div>
+          <h4>Notes</h4>
+          <!--<p>All semester study material</p>-->
+        </div>
+      </div>
+      <div class="card" onclick="browseBranch('Books')">
+        <div>
+          <h4>Text Books</h4>
+          <!--<p>All semester study material</p>-->
+        </div>
+      </div>
+      <div class="card" onclick="browseBranch('H.W')">
+        <div>
+          <h4>H.W</h4>
+          <!--<p>All semester study material</p>-->
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div style="background:white;padding:12px;border-radius:12px;border:1px solid #eef4ff;">
+      <strong>Follow Us</strong>
+      <div class="socials" style="margin-top:8px">
+        <a href="https://youtube.com/@mos240?si=LwKEamvReBbFftl6" aria-label="YouTube">YouTube</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : '9ba807a737fde6b12f8748e9167beab9',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/9ba807a737fde6b12f8748e9167beab9/invoke.js"></script>
+
+
+<footer id="contact">Copyright © <span id="year"></span> Master Of Solutions </footer>
+
+<script>
+  document.getElementById('year').innerText = new Date().getFullYear();
+
+  const materials = {
+    "313301": { "title": "313301 — Data Structure Using C (DSU)", "branch": "Computer", "answer": "Practicals for Data Structure Using C:", "practicals":[
+        {name:"Practical 1: Write a C program to perform following Operations on Array: Create, Insert, Delete, Display.", pdf:"https://drive.google.com/file/d/1oxmtQO0GK05uTTUwQSwA0vHk-J4MGpgD/view?usp=drivesdk"},
+        {name:"Practical 2: Write a C program to search a particular data from the given Array of numbers using: Linear Search Method.", pdf:"https://drive.google.com/file/d/1z67JYf3R0ZTUvSQzvYwQz9KWP4sIWzFb/view?usp=drivesdk"},
+        {name:"Practical 3: Write a C program to Search a particular data from the given Array of Strings using Linear Search Method.", pdf:"https://drive.google.com/file/d/1X2bue8iGJcCVkJf8w0pq7Ox69i_lhj9l/view?usp=drivesdk"},
+        {name:"Practical 4: Write a C program to Search a particular data from the given Array of numbers using Binary Search Method.", pdf:"https://drive.google.com/file/d/1GqKOFEs3i-W9FObgMDWr1uemxKhUriHl/view?usp=drivesdk"},
+        {name:"Practical 5: Write a C program to Search a particular data from the given Array of Strings using Binary Search Method.", pdf:"https://drive.google.com/file/d/1xBsRr8jaeTS0O4KnMBatOZM3mP-KdxVc/view?usp=drivesdk"},
+        {name:"Practical 6: Write a C program to Sort an Array of numbers using Bubble Sort Method.", pdf:"https://drive.google.com/file/d/1qANjM4oNQbrHUDj7ISo5W3JBpdvEekn5/view?usp=drivesdk"},
+        {name:"Practical 7: Write a C program to Sort an Array of Strings using Bubble Sort Method.", pdf:"https://drive.google.com/file/d/1mFGI8p9ac0ZXofPVpbY2TDbwiTZgxzCI/view?usp=drivesdk"},
+        {name:"Practical 8: Write a C program to Sort an Array of numbers using Selection Sort Method.", pdf:"https://drive.google.com/file/d/1k5yryzpvAWQwfwwDLF7_0BaO0xHJyKBt/view?usp=drivesdk"},
+        {name:"Practical 9: Write a C program to Sort an Array of Strings using Selection Sort Method.", pdf:"https://drive.google.com/file/d/1OC4tSWaxTnk7nIS-oMov20HN-ZRp-b9S/view?usp=drivesdk"},
+        {name:"Practical 10: Write a C program to Sort an Array of numbers using Insertion Sort Method.", pdf:"https://drive.google.com/file/d/1kQpguldXcEUMTuXHhpfLywvauDR2_sZK/view?usp=drivesdk"},
+        {name:"Practical 11: Write a C program to Sort an Array of Strings using Insertion Sort Method.", pdf:"https://drive.google.com/file/d/192X1n1kuac6t45bi73HDiPu55MTqSIEg/view?usp=drivesdk"},
+        {name:"Practical 12: Write a C program to Implement Singly Linked List with Operations: (i)Insertion at beginning, (ii)Search, (iii)Display", pdf:"https://drive.google.com/file/d/1HRjBHpQvaKHKTnWuog6UrZ5Ae837mo7m/view?usp=drivesdk"},
+        {name:"Practical 13: Write a C program to Implement Singly Linked List with Operations: (i)Insert at end, (ii)Insert After, (iii)Delete, (iv)Display", pdf:"https://drive.google.com/file/d/1MuC8GJFLUrSznZV61vdND3tTRBEqlkaJ/view?usp=drivesdk"},
+        {name:"Practical 14: Write a C program to create two polynomials using a Linked List.", pdf:"https://drive.google.com/file/d/19xwXWtef21mKUVx3vfCiQvQkGl9hEStY/view?usp=drivesdk"},
+        {name:"Practical 15: WritwWrite a C program to add two polynomials using a Linked list.", pdf:"https://drive.google.com/file/d/1HcjCtK5RnKo_dnJxv0-bs3HKF7FoqIPU/view?usp=drivesdk"},
+        {name:"Practical 16: Write a C program to perform PUSH and POP Operations on Stack using an Array. ", pdf:"https://drive.google.com/file/d/1EisjUkjHZhrPtsFuPmq3jjYl3fRtniyb/view?usp=drivesdk"},
+        {name:"Practical 17: Write a C program to perform PUSH and POP Operations on a Stack Using a Linked List.", pdf:"https://drive.google.com/file/d/10oxE_IGy_LOybOHLwv0bYsvl5g99c26T/view?usp=drivesdk"},
+        {name:"Practical 18: Write a C program to perform multiplication of two numbers using recursion.", pdf:"https://drive.google.com/file/d/1u0POqySr0Px9fMiIWfsQEqoZ_z2V-kXz/view?usp=drivesdk"},
+        {name:"Practical 19: WeiteWrite a C program to print given string in reverse using recursion.", pdf:"https://drive.google.com/file/d/1CrNMNhqX-z8jhMLx301ZnqaK7JvJifTa/view?usp=drivesdk"},
+        {name:"Practical 20: Weite a C program to create a Singly Linked List and traverse in reverse order using recursion.", pdf:"https://drive.google.com/file/d/1dJcsGx4tQ7Yz_6MxOJoiQ0sl-h-XoyAx/view?usp=drivesdk"},
+        {name:"Practical 21: Write a C program to perform INSERT and DELETE Operations on Linear Queue using an Array.", pdf:"https://drive.google.com/file/d/1KKZeCU1spy-RF_Trl83A2T4Ir32UPl87/view?usp=drivesdk"},
+        {name:"Practical 22: ", pdf:"https://drive.google.com/file/d/1hGiOOdu4xL4vreGKX1fOW9uzhxq-pQ-P/view?usp=drivesdk"},
+        {name:"Practical 23: ", pdf:"https://drive.google.com/file/d/1MnDDuww1Z24Op1KcW0fHjq58NUyE55Y0/view?usp=drivesdk"},
+        {name:"Practical 24: ", pdf:"https://drive.google.com/file/d/183YfS2gePOOyPIMY7JgtxGK9P96zTgyz/view?usp=drivesdk"},
+        {name:"Practical 25: ", pdf:"https://drive.google.com/file/d/1cvXjzggSOU-cylwuUnabjDN94JoJIMSy/view?usp=drivesdk"},
+        {name:"Practical 26: ", pdf:"https://drive.google.com/file/d/1YfA2OpHzNrfmoMBmU1YZSUj92BpflU2u/view?usp=drivesdk"},
+        {name:"Practical 27: ", pdf:"https://drive.google.com/file/d/1Pz9H8evBmoFGi3AWXQfGS7CemyIS8UrO/view?usp=drivesdk"},
+      ]
+    },
+     "313302": {
+      "title": "313302 — Database Management System (DMS) ",
+      "branch": "Computer",
+      "answer": "Practicals for DMS:",
+      "practicals": [
+        { name: "Practical 2: Create database schema for given application.", pdf: "https://drive.google.com/file/d/1dvmKh5qugxWfQzOBjYwPHhTsE7Er0mVV/view?usp=drivesdk" },
+        { name: "Practical 3: Execute DDL commands to manage database using SQL.", pdf: "https://drive.google.com/file/d/1T_XuwMfZzFEXxejJzwYazJjEvuriAMsZ/view?usp=drivesdk" },
+        { name: "Practical 4: Execute DML commands to manipulate data using SQL.", pdf: "https://drive.google.com/file/d/1QNd4pJK4hfWExBhDfn6NKyKOh05MkG8n/view?usp=drivesdk" },
+        { name: "Practical 5: Execute DCL commands to control the access to data using SQL.", pdf: "https://drive.google.com/file/d/1OePCd6McEp3Dae8kZZXCLgdgo1A32NbP/view?usp=drivesdk" },
+        { name: "Practical 6: Execute TCL commands to control transactions on data using SQL.", pdf: "https://drive.google.com/file/d/18sS4mfJXV7CEO_61wxV8M0XQbQjylLKJ/view?usp=drivesdk" },
+        { name: "Practical 7: Write queries using Arithmetic operators.", pdf: "https://drive.google.com/file/d/1tI5etjH-I1VRTF0Oi6ca3dnPtCqjukB0/view?usp=drivesdk" },
+        { name: "Practical 8: Apply built-in logical operators on given data.", pdf: "https://drive.google.com/file/d/1rlcbcoEbZ4d2Ieuq2YTzOv8kn9tSOqsG/view?usp=drivesdk" },
+        { name: "Practical 9: Implement Relational operators to apply various conditions in query.", pdf: "https://drive.google.com/file/d/1Daebu6nvVHzLC6_NJohtvU-ofN3rMVQI/view?usp=drivesdk" },
+        { name: "Practical 10: Use Set operators to perform different operations.", pdf: "https://drive.google.com/file/d/1vefHZmJr7Zb0xRU2_RSi-oKSzqCDA2NO/view?usp=drivesdk" },
+        { name: "Practical 11: Execute queries using string functions.", pdf: "https://drive.google.com/file/d/1jB-Rd8MV9XJYn6l7wPLQs0kQ1VRusseh/view?usp=drivesdk" },
+        { name: "Practical 12: Execute queries using Arithmetic functions.", pdf: "https://drive.google.com/file/d/1U0vgavdLgbgJnnjSeM5YsQ7E6jntEwbP/view?usp=drivesdk" },
+        { name: "Practical 13: Implement queries using Date and Time functions.", pdf: "https://drive.google.com/file/d/1aGwhtRhwABdSosZWFcHySXcu3iT-UxvL/view?usp=drivesdk" },
+        { name: "Practical 14: Implement queries using Aggregate functions.", pdf: "https://drive.google.com/file/d/1QzJnY-CPySJGiytwQYfFNOGWI7_XCGyh/view?usp=drivesdk" },
+        { name: "Practical 15: Execute queries for Ordering and Grouping data.", pdf: "https://drive.google.com/file/d/1Nwrv-jbNVg1jFhzWJUWNbGpNjB5QjxkE/view?usp=drivesdk" },
+        { name: "Practical 16: Implement SQL queries for Inner and Outer Join", pdf: "https://drive.google.com/file/d/1K38k1N7uV3aUxvTauHgW93edPg7Czef7/view?usp=drivesdk" },
+        { name: "Practical 17: Implement Stack using Array", pdf: "pdfs/DS_Practical1.pdf" },
+        { name: "Practical 18: Implement Stack using Array", pdf: "pdfs/DS_Practical1.pdf" },
+        { name: "Practical 19: Implement Stack using Array", pdf: "pdfs/DS_Practical1.pdf" },
+      ]
+    },
+    "313303": {
+      "title": "313303 — Digital Techniques (DTE)",
+      "branch": "Computer",
+      "answer": "Practicals for Digital Techniques:",
+      "practicals": [
+        { name: "Practical 1: Test the functionality of AND, OR, NOTZ EX-OR and EX-NOR logic gates using equivalent 74 series or CMOS Devices (CD) Series.", pdf: "https://drive.google.com/file/d/1WVYnLAZLQb28pPnvbtlj8gn8Gv5PaUEj/view?usp=drivesdk" },
+        { name: "Practical 2: Test the functionality of the given universal gates using equivalent 74 series/CD series.", pdf: "https://drive.google.com/file/d/1SJflKKnl3tHJTFL37rCcEsDpvw4Fn4nW/view?usp=drivesdk" },
+        { name: "Practical 3: Construct Basic gates using Universal Gates.", pdf: "https://drive.google.com/file/d/1tR6fMulgBjWh1ZKCQNQLW_opnaAPxFiG/view?usp=drivesdk" },
+        { name: "Practical 4: Construct Exclusive gates using Universal gates.", pdf: "https://drive.google.com/file/d/1MR-H9SfdjMEFqF23j28WwbXgMWHd9HRD/view?usp=drivesdk" },
+        { name: "Practical 5: Verify De-Morgan's Theorem (1 and 2)", pdf: "https://drive.google.com/file/d/1qeCvv6vf_K6OzMdAmdqKgM2nLU7RO6UP/view?usp=drivesdk" },
+        { name: "Practical 6: Implement 2 input, 3 input Adder Circuit.", pdf: "https://drive.google.com/file/d/1pk5kh14w3gbXZiz6rciIkmCBqVQufjPY/view?usp=drivesdk" },
+        { name: "Practical 7: Implement 2 input, 3 input Subtractor Circuit.", pdf: "https://drive.google.com/file/d/107KpYHZ0c4ZuuW4-aKTa8ksI_sddt8Vk/view?usp=drivesdk" },
+        { name: "Practical 8: ", pdf: "https://drive.google.com/file/d/1hgCV_zE7s7aO0H8mi2OMzG-Gdd7hS2lb/view?usp=drivesdk" },
+        { name: "Practical 9: ", pdf: "https://drive.google.com/file/d/1BM6xssA78ZXPhHhQuLoA2hc9QPY2YFUe/view?usp=drivesdk" },
+        { name: "Practical 10: ", pdf: "https://drive.google.com/file/d/1QiNSau1ac8ZtWiGpU3NpXzWUp_d_Ne9J/view?usp=drivesdk" },
+        { name: "Practical 11: ", pdf: "https://drive.google.com/file/d/1jVK6yJ4EzSOCmh_7344wOLvCOsRIe6o3/view?usp=drivesdk" },
+        { name: "Practical 12: ", pdf: "https://drive.google.com/file/d/1Zis7TEaGdbnrHvFdqhRTQCR19iReas02/view?usp=drivesdk" },
+        { name: "Practical 13: ", pdf: "https://drive.google.com/file/d/1Um2g74YVAck6wymWMxleGZksGLSm3Gas/view?usp=drivesdk" },
+        { name: "Practical 14: ", pdf: "https://drive.google.com/file/d/1mtzzeFgm626YMeuqFrVZflP6XaYl4Ihl/view?usp=drivesdk" },
+        { name: "Practical 15: ", pdf: "https://drive.google.com/file/d/1r4CdP2M3BBb6byybGpyp0X7o0qztMFKJ/view?usp=drivesdk" },
+        { name: "Practical 16: ", pdf: "https://drive.google.com/file/d/1HOQIQ03rztlzqDzdul_5IMc0olaqoZxS/view?usp=drivesdk" },
+        { name: "Practical 17: ", pdf: "https://drive.google.com/file/d/1z0E5PJog42Ajmvxd1NnYkwQwtPMZU8ml/view?usp=drivesdk" },
+        { name: "Practical 18: ", pdf: "https://drive.google.com/file/d/1NvzWoYk28TBAU82dxjXDGYfbp-73V64K/view?usp=drivesdk" },
+      ]
+    },
+    "313304": {
+      "title": "313304 — Object Oriented Programming using C++ (OOP)",
+      "branch": "Computer",
+      "answer": "Practicals for OOP:",
+      "practicals": [
+        { name: "Practical 1: Write programs to evaluate any expression using Input/Output functions.", pdf: "https://drive.google.com/file/d/1Z05I-DL1sV_XOR-lEt44U7baXT9TJJL6/view?usp=drivesdk" },
+        { name: "Practical 2: Write programs using- •Scope resolution operator •Memory management operator •Manipulators", pdf: "https://drive.google.com/file/d/19ivlcF9opMgp1_bqucv2Sw-WK9j0lgGm/view?usp=drivesdk" },
+        { name: "Practical 3: Write programs to demonstrate use of- •Implicit type casting •Explicit type casting ", pdf: "https://drive.google.com/file/d/1x854WSCcwJJJLRNyGx5O6phs8tC85aZj/view?usp=drivesdk" },
+        { name: "Practical 4: Write programs to show use of classes and objects to define the function inside the class", pdf: "https://drive.google.com/file/d/1Xg8xnqF_aFu4hYJdhEsegdoBUOUlDdVQ/view?usp=drivesdk" },
+        { name: "Practical 5: Write programs to define the function outside the class.", pdf: "https://drive.google.com/file/d/10-1WbtDrOlYx7G2UxT7cim04Abj-JwAh/view?usp=drivesdk" },
+        { name: "Practical 6: Write programs to implement inline function.", pdf: "https://drive.google.com/file/d/17XvO7kNa-4baV8pyWVWL3u5n-CbPn3jG/view?usp=drivesdk" },
+        { name: "Practical 7: Write programs to implement friend function using- •Two different classes •External function ", pdf: "https://drive.google.com/file/d/1Y_R-uu1xdKhG8f6vc-yDCdvKEu4f5qsd/view?usp=drivesdk" },
+        { name: "Practical 8: Write programs to implement- •Static data member •Static member function ", pdf: "https://drive.google.com/file/d/1W0-V5nLakJ91yYmu3402vKpH-SfoQC_T/view?usp=drivesdk" },
+        { name: "Practical 9: Write programs to create array of objects.", pdf: "https://drive.google.com/file/d/1tNLBhCWN_IJjSdaPm6z3ZTZUnivO3jTI/view?usp=drivesdk" },
+        { name: "Practical 10: Write programs for- •Default constructor •Parameterized constructor •Copy constructor •Multiple constructors in one class", pdf: "https://drive.google.com/file/d/1w2O9Oj1Mq-dbq54G64tW89LNjnhZ5z7z/view?usp=drivesdk" },
+        { name: "Practical 11: Write programs using- •Single level inheritance •Multilevel inheritance ", pdf: "https://drive.google.com/file/d/1EYk3qNrGCioZ7XfBT4tinplksaJeqO6U/view?usp=drivesdk" },
+        { name: "Practical 12: Write programs to implement multiple inheritance.", pdf: "https://drive.google.com/file/d/18kpUAbHSMGyI54cGy4LM6oL3XEkZSHm4/view?usp=drivesdk" },
+        { name: "Practical 13: Write programs to implement hierarchical inheritance.", pdf: "https://drive.google.com/file/d/139Uc6ULZTlnyhPaauESTJXQN0H83j3Bq/view?usp=drivesdk" },
+        { name: "Practical 14: Write programs to implement virtual base class.", pdf: "https://drive.google.com/file/d/1TU1U7EDKPGQAgj7sPrVPjggdDZXCV-P_/view?usp=drivesdk" },
+        { name: "Practical 15: Write programs which show the use of constructors in derived class.", pdf: "https://drive.google.com/file/d/1ouc2KG6C7X2x1iTGDlcNijKcfyv-7Xx8/view?usp=drivesdk" },
+        { name: "Practical 16: Write programs to implement- •Pointer to object •'this' pointer", pdf: "https://drive.google.com/file/d/13dkh3BWWtZU53GtWYFovVt2TgxQYDAQm/view?usp=drivesdk" },
+        { name: "Practical 17: Write programs for- •Pointer to derived class in single inheritance •Pointer to derived class in multiple inheritance", pdf: "https://drive.google.com/file/d/1PM9p5IxVv0a15oPJEgNJpE1m2szjaqrP/view?usp=drivesdk" },
+        { name: "Practical 18: Write programs which show the use of function overloading.", pdf: "https://drive.google.com/file/d/16Dn4MQAV2-8vbUFvx85_gYgHksVIrUxv/view?usp=drivesdk" },
+        { name: "Practical 19: Write programs to overload unary operators using- •Member functions •Friend Function.", pdf: "https://drive.google.com/file/d/12Sx3mSt0T1n_J14HCIXQyHp47sIZ4zft/view?usp=drivesdk" },
+        { name: "Practical 20: Write programs to overload binary operators using- •Member function •Friend funtion", pdf: "https://drive.google.com/file/d/1xlVO52YIexI5hL-9j0VqYliz4YOvkCBN/view?usp=drivesdk" },
+        { name: "Practical 21: Write programs to implement virtual function.", pdf: "https://drive.google.com/file/d/1TILMGwz9O8KpsNCw0Q_uFXsEhXtShypZ/view?usp=drivesdk" },
+        { name: "Practical 22: Write programs to implement pure virtual function.", pdf: "https://drive.google.com/file/d/13IDm2K_rRL7dFmIvxayurMTHRL6tdMxk/view?usp=drivesdk" },
+        { name: "Practical 23: Write programs to read and write from/to file using- •Constructor •Open()", pdf: "https://drive.google.com/file/d/1CCq1Non0RviuVnMXZQWjiw7ijMChuXJm/view?usp=drivesdk" },
+        { name: "Practical 24: Write programs to copy the content of one file into another file using formatted input/output functions.", pdf: "https://drive.google.com/file/d/12ai3Hy71sblyA_Wyg1kwYJtlZtt9AFPe/view?usp=drivesdk" },
+        { name: "Practical 25: Write programs to implement sequential input and output operations on file.", pdf: "https://drive.google.com/file/d/1btS8HGwDWedvIuk8y_bFqWM4g5iyydAU/view?usp=drivesdk" },
+        { name: "Practical 26: Write programs to perform input/output operations on binary files.", pdf: "https://drive.google.com/file/d/1Wb7irtrYoYW2RirVe6Gkt7-veiUHX9fG/view?usp=drivesdk" },
+      ]
+    },
+    "313001": {
+      "title": "313001 — Computer Graphics (CGR)",
+      "branch": "Computer",
+      "answer": "Practicals for Computer Graphics :",
+      "practicals": [
+        { name: "Practical 1: Write a C program to draw various graphics objects (Pixel, Circle, Line, Ellipse, Rectangle, Triangle, Polygon) using graphics functions.", pdf: "https://drive.google.com/file/d/1G65Gdy8MThejC1jAS0ccJFP-Msl52cnG/view?usp=drivesdk" },
+        { name: "Practical 2: Write a C program to draw line using DDA algorithm.", pdf: "https://drive.google.com/file/d/1kUCAXjbjfeFd49mhBKDt0S7WDK_ksYgu/view?usp=drivesdk" },
+        { name: "Practical 3: Write a C program to draw line using Bresenham's algorithm.", pdf: "https://drive.google.com/file/d/1xnqsHVgyQG5-uMd7tCxIcwwQG3aglBQR/view?usp=drivesdk" },
+        { name: "Practical 4: Write a C program to draw circle using Bresenham's algorithm.", pdf: "https://drive.google.com/file/d/1QKEhbLYa_kneNi-QlHdo8MW7U7FuPu4c/view?usp=drivesdk" },
+        { name: "Practical 5: Write a C program for Flood fill algorithm of polygon filling.", pdf: "https://drive.google.com/file/d/1cMK4b8VqCF1FRF0lCisnTm6rKNRcNXh9/view?usp=drivesdk" },
+        { name: "Practical 6: Write a C program for Boundary fill algorithm of polygon filling.", pdf: "https://drive.google.com/file/d/1meuIwuyVqSlylklGAl4VBbBwRh2ZDSTx/view?usp=drivesdk" },
+        { name: "Practical 7: Write a C program for 2D Translation and Scaling.", pdf: "https://drive.google.com/file/d/1nZi2n9bNweL2VqHDN5qvKekKov7bxBEo/view?usp=drivesdk" },
+        { name: "Practical 7: Write a C program for 2D Translation and Scaling.", pdf: "https://drive.google.com/file/d/1nZi2n9bNweL2VqHDN5qvKekKov7bxBEo/view?usp=drivesdk" },
+        { name: "Practical 7: Write a C program for 2D Translation and Scaling.", pdf: "https://drive.google.com/file/d/1nZi2n9bNweL2VqHDN5qvKekKov7bxBEo/view?usp=drivesdk" },
+        { name: "Practical 7: Write a C program for 2D Translation and Scaling.", pdf: "https://drive.google.com/file/d/1nZi2n9bNweL2VqHDN5qvKekKov7bxBEo/view?usp=drivesdk" },
+      ]
+    },
+    // Add other subjects similarly...
+    "1": {
+      "title": "313301 — Data Structure Using C (DSU)",
+      "branch": "PYQ",
+      "answer": "PYQ'S for DSU :",
+      "practicals": [
+        { name: "2024 Winter Question Paper ", pdf: "https://drive.google.com/file/d/1EhDgfYo4ebHjVXb-f_8UUWb1W9Xbtk3d/view?usp=drivesdk" },
+        { name: "2025 Summer Question Paper ", pdf: "https://drive.google.com/file/d/14mpfsD9iZXfbagnBNHa14dma9aM-GVCi/view?usp=drivesdk" },
+
+      ]
+    },
+    "4": {
+      "title": "313304 — Object Oriented Programming Using C++ (OOP)",
+      "branch": "PYQ",
+      "answer": "PYQ'S for OOP :",
+      "practicals": [
+        { name: "2024 Winter Question Paper ", pdf: "https://drive.google.com/file/d/1KU-MfIhnT7GM-BQUTiPmw8ml9W61ikJZ/view?usp=drivesdk" },
+        { name: "2025 Summer Question Paper ", pdf: "https://drive.google.com/file/d/1nAl407CLwik2GmaCfXFyRaOfaMKk6Bsg/view?usp=drivesdk" },
+        { name: "2024 Summer Model Answer Paper ", pdf: "https://drive.google.com/file/d/1V4Zl9wybe1Vb5a51xfF6c8tMg9fyoBYR/view?usp=drivesdk" },
+        { name: "2023 Summer Model Answer Paper ", pdf: "https://drive.google.com/file/d/16YcvvibxbwZafhcOJOjYAliwld1GZypE/view?usp=drivesdk" },
+        { name: "Unit 1 & 2 70 Marks Imp question paper ", pdf: "https://drive.google.com/file/d/1O55IhRzzOAgmYKK-PXljvTXFiiswlh0U/view?usp=drivesdk" },
+        { name: "Unit 3 & 4 70 Marks Imp question paper ", pdf: "https://drive.google.com/file/d/1x5B9SWZwjZoxh1h1PAvRdD2VUAjO0tx8/view?usp=drivesdk" },
+        { name: "Unit-5 70 Marks Imp question paper ", pdf: "https://drive.google.com/file/d/14TkKS6akYPtFgi1al1j6Sm3ERZ1xkU0E/view?usp=drivesdk" },
+
+      ]
+    },
+    "2": {
+      "title": "313302 — Database Management System (DMS)",
+      "branch": "PYQ",
+      "answer": "PYQ's for DMS :",
+      "practicals": [
+        { name: "Summer 2025 Question Paper ", pdf: "https://drive.google.com/file/d/1Zkum4SyrBtZMtf6L7EfIq4VlIZjXyYdr/view?usp=drivesdk" },
+        { name: "Winter 2024 Question Paper ", pdf: "https://drive.google.com/file/d/1i7SOoPQO1fk2aZ5DKOvbpYzramRcSzOj/view?usp=drivesdk" },
+      ]
+    },
+    "3": {
+      "title": "313303 — Digital Techniques (DTE)",
+      "branch": "PYQ",
+      "answer": "PYQ's for DTE :",
+      "practicals": [
+        { name: "Summer 2025 Question Paper ", pdf: "https://drive.google.com/file/d/1nYtF0uPkLL0-hYjPdswEYCWdnQI4Wk1C/view?usp=drivesdk" },
+        { name: "Winter 2024 Question Paper ", pdf: "https://drive.google.com/file/d/1O0dUkk3L4T6C179NCW0jvSLffOjt5Qo4/view?usp=drivesdk" },
+        { name: "Summer 2019 Model Answer Paper ", pdf: "https://drive.google.com/file/d/1GdXDTKU8m0xAXv19jsJigUUwXp38PoV8/view?usp=drivesdk" },
+      ]
+    },
+
+    "0": {
+      "title": "312303 — Programming In C (PIC)",
+      "branch": "Notes",
+      "answer": "Notes for PIC :",
+      "practicals": [
+        { name: "Unit 1 & 2 Notes ", pdf: "https://drive.google.com/file/d/1zumyScB9j_K7K8n7cvxBiqL66Lhvj4op/view?usp=drivesdk" },
+        { name: "Unit 3, 4 & 5 Notes ", pdf: "https://drive.google.com/file/d/1z1j-mE4CgdQsoawlSbEyPqwiO4vSnIml/view?usp=drivesdk" },
+
+      ]
+    },
+
+    "02": {
+      "title": "313302 — Database Management System (DMS)",
+      "branch": "Notes",
+      "answer": "Notes for DMS :",
+      "practicals": [
+        { name: "Unit - I Introduction To Database System  ", pdf: "https://drive.google.com/file/d/1c3tKpd0N7FDpCaZGhLlXZPXpueSkS9-0/view?usp=drivesdk" },
+        { name: "Unit - II Relational Data Model", pdf: "https://drive.google.com/file/d/1Slt-nWVor94sxe_cYCkiJZNWsAd31zbC/view?usp=drivesdk" },
+        { name: "Unit - III Interactive SQL and Performance Tuning", pdf: "https://drive.google.com/file/d/1WJSEfEhxdSiIZcKWaS6kvVfGA-ANC3lH/view?usp=drivesdk" },
+        { name: "Unit - IV PL/SQL Programming", pdf: "https://drive.google.com/file/d/1x5WpvFEge0i-i5IH5p43LFYripcW9VM0/view?usp=drivesdk" },
+        { name: "Unit - V Database Administration (Part 1)", pdf: "https://drive.google.com/file/d/1hZShzRmjAzNAbTOZ2mFVjm6UYlL1UXBf/view?usp=drivesdk" },
+        { name: "Unit - V Database Administration (Part 2)", pdf: "https://drive.google.com/file/d/1LKauPpgNIgFclol9FdAe8os_e8Cmh-Ve/view?usp=drivesdk" },
+
+      ]
+    },
+
+    "10": {
+      "title": "312302 — Basic Electrical and Electronics (BEE)",
+      "branch": "Books",
+      "answer": "Books for BEE :",
+      "practicals": [
+        { name: "Basic Electrical Book", pdf: "https://drive.google.com/file/d/1JHpb8krsisWhGumlx4TaiMiCktZ5rjzy/view?usp=drivesdk" },
+        { name: "Basic Electronics Book", pdf: "https://drive.google.com/file/d/1IFVVW25oPXyYMN2vI8L_73DGhw5hfjtG/view?usp=drivesdk" },
+
+      ]
+    },
+    "100": {
+      "title": "314321 — Microprocessor Programming (MIC)",
+      "branch": "H.W",
+      "answer": "H.W for MIC :",
+      "practicals": [
+        { name: "Today's H.W ", pdf: "https://drive.google.com/file/d/1U7LysvNxQ_lG6WQwUMwu-fXD1StuZoVT/view?usp=drivesdk" },
+
+      ]
+    },
+    "11": {
+      "title": "314318 — Data Communication & Computer Metworking (DCN)",
+      "branch": "Notes",
+      "answer": "Notes for DCN :",
+      "practicals": [
+        { name: "Unit 1 Notes", pdf: "https://drive.google.com/file/d/1pf_jl3t6ru1I5kPaNcte_-CgRPoleXJ5/view?usp=drivesdk" },
+
+      ]
+    },
+    "110": {
+      "title": "314004 — Python Programming (PWP)",
+      "branch": "Computer",
+      "answer": "Practicals for PWP :",
+      "practicals": [
+        { name: "Practical 1 ", pdf: "https://drive.google.com/file/d/1Mfd-hhTMHvaIBv138P2FrX5M9hiixBK4/view?usp=drivesdk" },
+        { name: "Practical 2 ", pdf: "https://drive.google.com/file/d/1jPsHkvnRiA0KVI9Ab0p9UiUWntpCDZSh/view?usp=drivesdk" },
+        { name: "Practical 3 ", pdf: "https://drive.google.com/file/d/1yGuoHldiidc1hqRNYvY32_5MmFJx6-wz/view?usp=drivesdk" },
+        { name: "Practical 4 ", pdf: "https://drive.google.com/file/d/1dtmg6tQjVIXpqJinOqdfUovoO4k274QK/view?usp=drivesdk" },
+        { name: "Practical 5 ", pdf: "https://drive.google.com/file/d/1bbxwq6RECLbGrqku-dfghCar6RG6kJn7/view?usp=drivesdk" },
+        { name: "Practical 6 ", pdf: "https://drive.google.com/file/d/1bDm9y5nsxUBIQLVX3gGKOXOUdVu8tozy/view?usp=drivesdk" },
+
+      ]
+    },
+  };
+
+
+  function escapeHtml(str){
+    if(!str) return '';
+    return String(str).replace(/[&<>"']/g, s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+
+  function renderSubject(item){
+    let html = `<h3 style="margin-bottom:6px">${escapeHtml(item.title)}</h3>
+                <div style="color:#51607a;margin-bottom:10px">Branch: ${escapeHtml(item.branch)}</div>
+                <div>${item.answer || ''}</div>`;
+
+    if(item.practicals && item.practicals.length){
+      html += `<div style="margin-top:10px;">`;
+      item.practicals.forEach(p=>{
+        html += `<div class="practical-card">
+                   <a href="${p.pdf}" target="_blank">${escapeHtml(p.name)}</a>
+                 </div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div style="margin-top:8px;color:#9aa6b2">No practicals added yet.</div>`;
+    }
+    return html;
+  }
+
+  function search() {
+    const q = (document.getElementById('searchBox').value || '').trim().toLowerCase();
+    const resultEl = document.getElementById('result');
+    if (!q) { resultEl.innerHTML = '<div class="noresult">Please enter subject code or subject name.</div>'; return; }
+
+    if (materials[q]) { resultEl.innerHTML = renderSubject(materials[q]); return; }
+
+    const matches = [];
+    for (const key in materials) {
+      const item = materials[key];
+      if (key.includes(q) || (item.title && item.title.toLowerCase().includes(q))) matches.push(item);
+    }
+    if (matches.length) {
+      let html = `<div style="margin-bottom:8px;color:#0b5ed7;font-weight:600">${matches.length} result(s) found</div>`;
+      matches.forEach(m=>{
+        html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
+                   ${renderSubject(m)}
+                 </div>`;
+      });
+      resultEl.innerHTML = html;
+    } else { resultEl.innerHTML = '<div class="noresult">No solution found for the given code/name.</div>'; }
+  }
+
+  function browseBranch(branchName){
+    const list = [];
+    for(const k in materials){
+      if(materials[k].branch && materials[k].branch.toLowerCase().includes(branchName.toLowerCase())){
+        list.push(materials[k]);
+      }
+    }
+    const resultEl = document.getElementById('result');
+    if(!list.length){
+      resultEl.innerHTML = `<div class="noresult">No materials found for ${escapeHtml(branchName)}.</div>`;
+      return;
+    }
+    let html = `<div style="color:#0b5ed7;font-weight:600;margin-bottom:8px">${list.length} item(s) in ${escapeHtml(branchName)}</div>`;
+    list.forEach(m=>{
+      html += `<div style="padding:10px;border-radius:8px;border:1px solid #eef6ff;margin-bottom:8px;background:#fff">
+                ${renderSubject(m)}
+               </div>`;
+    });
+    resultEl.innerHTML = html;
+  }
+</script>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : '020031b80a5398e2008e78644d6ea8e9',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/020031b80a5398e2008e78644d6ea8e9/invoke.js"></script>
+
+<script>
+  // 👇 Controlled Adsterra Popunder (triggered only once per session)
+  let popRun = false;
+
+  document.addEventListener("click", function () {
+    if (!popRun && !sessionStorage.getItem("popShown")) {
+      popRun = true;
+      sessionStorage.setItem("popShown", "true");
+
+      // Load Adsterra popunder script
+      const s = document.createElement("script");
+      s.src = "//pl27687807.revenuecpmgate.com/b6/07/86/b607861ca6f2feb717ef8cd55377694f.js";
+      document.body.appendChild(s);
+
+      console.log("✅ Adsterra popunder triggered on first user click");
+    }
+  });
+</script>
+
+</body>
+</html>
